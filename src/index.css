@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ─── LIGHT MODE ────────────────────────────────────────────────────────────
+   Palette:
+   Cool Cerulean   #8EB1D1  →  hsl(207 41% 70%)   accent
+   Baby Blue Eyes  #A7C7E7  →  hsl(207 55% 78%)   subtle tint
+   Midnight Blue   #1C2B48  →  hsl(220 44% 20%)   foreground / headings
+   Platinum        #E8ECEF  →  hsl(207 18% 93%)   near-white backgrounds
+   Light Blue Grey #C4D8E5  →  hsl(205 35% 84%)   borders / muted surfaces
+   ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --background:       210 30% 98%;    /* crisp near-white with a breath of blue */
+  --foreground:       220 44% 20%;    /* Midnight Blue — rich, readable */
+
+  --card:             207 30% 96%;    /* Platinum-tinted card surface */
+  --card-foreground:  220 44% 20%;
+  --card-border:      205 35% 84%;    /* Light Blue Grey */
+
+  --border:           205 35% 84%;    /* Light Blue Grey #C4D8E5 */
+  --input:            205 35% 84%;
+  --ring:             207 41% 60%;
+
+  --primary:          220 44% 20%;    /* Midnight Blue */
+  --primary-foreground: 207 18% 93%; /* Platinum */
+
+  --muted:            207 30% 92%;    /* Baby Blue Eyes wash */
+  --muted-foreground: 215 25% 46%;   /* readable mid-blue-grey */
+
+  --accent:           207 41% 60%;    /* Cool Cerulean #8EB1D1 */
+  --accent-foreground: 220 44% 14%;  /* dark on accent */
+
+  --app-font-sans:  'Inter', sans-serif;
+  --app-font-serif: 'Newsreader', serif;
+  --app-font-mono:  'JetBrains Mono', monospace;
+  --radius: 0.25rem;
+}
+
+/* ─── DARK MODE ─────────────────────────────────────────────────────────────
+   Midnight Blue becomes the background; Platinum becomes the text.
+   Cerulean stays as accent — it pops perfectly on dark navy.
+   ─────────────────────────────────────────────────────────────────────────── */
+.dark {
+  --background:       220 44% 10%;   /* deeper than Midnight Blue */
+  --foreground:       207 18% 93%;   /* Platinum */
+
+  --card:             220 40% 15%;   /* Midnight Blue lifted slightly */
+  --card-foreground:  207 18% 93%;
+  --card-border:      220 30% 22%;
+
+  --border:           220 30% 22%;
+  --input:            220 30% 22%;
+  --ring:             207 41% 60%;
+
+  --primary:          207 18% 93%;   /* Platinum as primary in dark */
+  --primary-foreground: 220 44% 10%;
+
+  --muted:            220 35% 18%;
+  --muted-foreground: 207 28% 64%;   /* subdued Cerulean-grey */
+
+  --accent:           207 41% 65%;   /* Cool Cerulean — slightly lifted */
+  --accent-foreground: 220 44% 10%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
